@@ -5,7 +5,7 @@ exports.test = function (req, res) {
     res.send('Greetings from the Test controller!');
 };
 
-exports.createfolder = function (req, res) {
+exports.createFolder = function (req, res) {
     var folder = new folder(
         {
             name: req.body.name,
@@ -21,16 +21,23 @@ exports.createfolder = function (req, res) {
     })
 };
 
-exports.getfolder = function (req, res) {
+exports.listFolder = function (req, res) {
     Folder.findById(req.params.id, function (err, folder) {
         if (err) return next(err);
         res.send(folder);
     })
 };
 
-exports.deletefolder = function (req, res) {
+exports.deleteFolder = function (req, res) {
     Folder.findByIdAndRemove(req.params.id, function (err) {
         if (err) return next(err);
         res.send('folder Deleted successfully!');
+    })
+};
+
+exports.renameFolder = function (req, res) {
+    Folder.findByIdAndUpdate(req.params.id, function (err) {
+        if (err) return next(err);
+        res.send('folder renamed successfully!');
     })
 };

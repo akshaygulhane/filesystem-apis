@@ -3,14 +3,13 @@ var router = express.Router();
 
 var fileController = require('../controllers/file');
 
-// a simple test url to check that all of our files are communicating correctly.
-router.get('/test', fileController.test);
+//create new files in the folders
+router.post('/', fileController.createFile);
 
-
-router.post('/create', fileController.createFile);
-
-router.get('/:id', fileController.getFile);
-
+//delete files
 router.delete('/:id/delete', fileController.deleteFile);
+
+//rename files
+router.post('/:id/rename', fileController.renameFile);
 
 module.exports = router;

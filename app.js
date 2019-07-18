@@ -12,7 +12,7 @@ const swaggerDocument = require('./swagger.json');
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
-const dev_db_url = '';
+const dev_db_url = 'mongodb://dev:dev123@ds351807.mlab.com:51807/filesystem';
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;

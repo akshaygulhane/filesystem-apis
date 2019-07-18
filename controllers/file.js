@@ -34,3 +34,10 @@ exports.deleteFile = function (req, res) {
         res.send('File Deleted successfully!');
     })
 };
+
+exports.renameFile = function (req, res) {
+    File.findByIdAndUpdate(req.params.id, function (err) {
+        if (err) return next(err);
+        res.send('file renamed successfully!');
+    })
+};

@@ -1,0 +1,284 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "documentation for File System APIs",
+        "version": "1.0.0",
+        "title": "File System APIs",
+        "contact": {
+            "email": "akshay.gulhane@outlook.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "host": "localhost:3001",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "file",
+            "description": "APIs related to files"
+        },
+        {
+            "name": "folder",
+            "description": "APIs related to Folders / sub folders"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/file": {
+            "post": {
+                "tags": [
+                    "file"
+                ],
+                "summary": "Add a new file",
+                "description": "",
+                "operationId": "addPet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "filename": "body",
+                        "path": "body",
+                        "description": "File object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/File"
+                        }
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/file/:id/rename": {
+            "post": {
+                "tags": [
+                    "file"
+                ],
+                "summary": "rename a file",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "id": "query"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/file/:id/delete": {
+            "delete": {
+                "tags": [
+                    "file"
+                ],
+                "summary": "delete a file",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "id": "query"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/folder": {
+            "get": {
+                "tags": [
+                    "folder"
+                ],
+                "summary": "List folders ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "description": "path to the directory",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "folder"
+                ],
+                "summary": "create folder or sub folder",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "description": "path to the directory",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/folder/:id/rename": {
+            "post": {
+                "tags": [
+                    "folder"
+                ],
+                "summary": "rename a folder",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "id": "query"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/folder/:id/delete": {
+            "delete": {
+                "tags": [
+                    "folder"
+                ],
+                "summary": "delete a folder",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "id": "query"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "File": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "filename": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            }
+        },
+        "Folder": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "foldername": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            }
+        },
+        "ApiResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

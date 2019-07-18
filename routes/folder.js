@@ -3,12 +3,16 @@ var router = express.Router();
 
 var folderController = require('../controllers/folder');
 
-router.get('/test', folderController.test);
+//create folders and sub-folders
+router.post('/create', folderController.createFolder);
 
-router.post('/create', folderController.createfolder);
+//view the list of contents of the folder
+router.get('/:id', folderController.listFolder);
 
-router.get('/:id', folderController.getfolder);
+//delete folders and files
+router.delete('/:id/delete', folderController.deleteFolder);
 
-router.delete('/:id/delete', folderController.deletefolder);
+//rename files
+router.post('/:id/rename', folderController.renameFolder);
 
 module.exports = router;
